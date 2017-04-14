@@ -1,0 +1,387 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus II 32-bit"
+// VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version"
+
+// DATE "04/14/2017 11:36:18"
+
+// 
+// Device: Altera EP4CE30F23I7 Package FBGA484
+// 
+
+// 
+// This Verilog file should be used for ModelSim-Altera (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module LED7segDecoder (
+	number,
+	led7seg,
+	selecter);
+input 	[3:0] number;
+output 	[7:0] led7seg;
+output 	selecter;
+
+// Design Ports Information
+// led7seg[0]	=>  Location: PIN_B5,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[1]	=>  Location: PIN_A4,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[2]	=>  Location: PIN_B3,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[3]	=>  Location: PIN_B4,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[4]	=>  Location: PIN_A5,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[5]	=>  Location: PIN_A6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[6]	=>  Location: PIN_B6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// led7seg[7]	=>  Location: PIN_A3,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// selecter	=>  Location: PIN_E6,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// number[0]	=>  Location: PIN_A14,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// number[1]	=>  Location: PIN_B14,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// number[2]	=>  Location: PIN_E14,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// number[3]	=>  Location: PIN_F14,	 I/O Standard: 2.5 V,	 Current Strength: Default
+
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+// synopsys translate_off
+initial $sdf_annotate("LED7segDecoder_min_1200mv_-40c_v_fast.sdo");
+// synopsys translate_on
+
+wire \led7seg[0]~output_o ;
+wire \led7seg[1]~output_o ;
+wire \led7seg[2]~output_o ;
+wire \led7seg[3]~output_o ;
+wire \led7seg[4]~output_o ;
+wire \led7seg[5]~output_o ;
+wire \led7seg[6]~output_o ;
+wire \led7seg[7]~output_o ;
+wire \selecter~output_o ;
+wire \number[0]~input_o ;
+wire \number[1]~input_o ;
+wire \number[3]~input_o ;
+wire \number[2]~input_o ;
+wire \WideOr6~0_combout ;
+wire \WideOr5~0_combout ;
+wire \WideOr4~0_combout ;
+wire \WideOr3~0_combout ;
+wire \WideOr2~0_combout ;
+wire \WideOr1~0_combout ;
+wire \WideOr0~0_combout ;
+
+
+// Location: IOOBUF_X11_Y43_N16
+cycloneive_io_obuf \led7seg[0]~output (
+	.i(gnd),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[0]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[0]~output .bus_hold = "false";
+defparam \led7seg[0]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X9_Y43_N30
+cycloneive_io_obuf \led7seg[1]~output (
+	.i(\WideOr6~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[1]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[1]~output .bus_hold = "false";
+defparam \led7seg[1]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X5_Y43_N9
+cycloneive_io_obuf \led7seg[2]~output (
+	.i(!\WideOr5~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[2]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[2]~output .bus_hold = "false";
+defparam \led7seg[2]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X7_Y43_N9
+cycloneive_io_obuf \led7seg[3]~output (
+	.i(!\WideOr4~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[3]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[3]~output .bus_hold = "false";
+defparam \led7seg[3]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X14_Y43_N16
+cycloneive_io_obuf \led7seg[4]~output (
+	.i(!\WideOr3~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[4]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[4]~output .bus_hold = "false";
+defparam \led7seg[4]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X25_Y43_N30
+cycloneive_io_obuf \led7seg[5]~output (
+	.i(!\WideOr2~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[5]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[5]~output .bus_hold = "false";
+defparam \led7seg[5]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X22_Y43_N2
+cycloneive_io_obuf \led7seg[6]~output (
+	.i(!\WideOr1~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[6]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[6]~output .bus_hold = "false";
+defparam \led7seg[6]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X5_Y43_N2
+cycloneive_io_obuf \led7seg[7]~output (
+	.i(!\WideOr0~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\led7seg[7]~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \led7seg[7]~output .bus_hold = "false";
+defparam \led7seg[7]~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X1_Y43_N16
+cycloneive_io_obuf \selecter~output (
+	.i(gnd),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\selecter~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \selecter~output .bus_hold = "false";
+defparam \selecter~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOIBUF_X41_Y43_N15
+cycloneive_io_ibuf \number[0]~input (
+	.i(number[0]),
+	.ibar(gnd),
+	.o(\number[0]~input_o ));
+// synopsys translate_off
+defparam \number[0]~input .bus_hold = "false";
+defparam \number[0]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X38_Y43_N1
+cycloneive_io_ibuf \number[1]~input (
+	.i(number[1]),
+	.ibar(gnd),
+	.o(\number[1]~input_o ));
+// synopsys translate_off
+defparam \number[1]~input .bus_hold = "false";
+defparam \number[1]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X63_Y43_N29
+cycloneive_io_ibuf \number[3]~input (
+	.i(number[3]),
+	.ibar(gnd),
+	.o(\number[3]~input_o ));
+// synopsys translate_off
+defparam \number[3]~input .bus_hold = "false";
+defparam \number[3]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X48_Y43_N8
+cycloneive_io_ibuf \number[2]~input (
+	.i(number[2]),
+	.ibar(gnd),
+	.o(\number[2]~input_o ));
+// synopsys translate_off
+defparam \number[2]~input .bus_hold = "false";
+defparam \number[2]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N24
+cycloneive_lcell_comb \WideOr6~0 (
+// Equation(s):
+// \WideOr6~0_combout  = (\number[3]~input_o ) # ((\number[1]~input_o  & ((!\number[2]~input_o ) # (!\number[0]~input_o ))) # (!\number[1]~input_o  & ((\number[2]~input_o ))))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr6~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr6~0 .lut_mask = 16'hF7FC;
+defparam \WideOr6~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N26
+cycloneive_lcell_comb \WideOr5~0 (
+// Equation(s):
+// \WideOr5~0_combout  = (\number[3]~input_o  & (((!\number[1]~input_o  & \number[2]~input_o )))) # (!\number[3]~input_o  & (!\number[2]~input_o  & ((\number[0]~input_o ) # (\number[1]~input_o ))))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr5~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr5~0 .lut_mask = 16'h300E;
+defparam \WideOr5~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N12
+cycloneive_lcell_comb \WideOr4~0 (
+// Equation(s):
+// \WideOr4~0_combout  = (\number[1]~input_o  & (\number[0]~input_o  & (!\number[3]~input_o ))) # (!\number[1]~input_o  & ((\number[2]~input_o  & ((!\number[3]~input_o ))) # (!\number[2]~input_o  & (\number[0]~input_o ))))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr4~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr4~0 .lut_mask = 16'h0B2A;
+defparam \WideOr4~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N30
+cycloneive_lcell_comb \WideOr3~0 (
+// Equation(s):
+// \WideOr3~0_combout  = (\number[1]~input_o  & ((\number[0]~input_o  & ((\number[2]~input_o ))) # (!\number[0]~input_o  & (\number[3]~input_o  & !\number[2]~input_o )))) # (!\number[1]~input_o  & (!\number[3]~input_o  & (\number[0]~input_o  $ 
+// (\number[2]~input_o ))))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr3~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr3~0 .lut_mask = 16'h8942;
+defparam \WideOr3~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N0
+cycloneive_lcell_comb \WideOr2~0 (
+// Equation(s):
+// \WideOr2~0_combout  = (\number[3]~input_o  & (\number[2]~input_o  & ((\number[1]~input_o ) # (!\number[0]~input_o )))) # (!\number[3]~input_o  & (!\number[0]~input_o  & (\number[1]~input_o  & !\number[2]~input_o )))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr2~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr2~0 .lut_mask = 16'hD004;
+defparam \WideOr2~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N2
+cycloneive_lcell_comb \WideOr1~0 (
+// Equation(s):
+// \WideOr1~0_combout  = (\number[1]~input_o  & ((\number[0]~input_o  & (\number[3]~input_o )) # (!\number[0]~input_o  & ((\number[2]~input_o ))))) # (!\number[1]~input_o  & (\number[2]~input_o  & (\number[0]~input_o  $ (\number[3]~input_o ))))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr1~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr1~0 .lut_mask = 16'hD680;
+defparam \WideOr1~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y42_N4
+cycloneive_lcell_comb \WideOr0~0 (
+// Equation(s):
+// \WideOr0~0_combout  = (\number[1]~input_o  & (\number[0]~input_o  & (\number[3]~input_o  & !\number[2]~input_o ))) # (!\number[1]~input_o  & (\number[2]~input_o  $ (((\number[0]~input_o  & !\number[3]~input_o )))))
+
+	.dataa(\number[0]~input_o ),
+	.datab(\number[1]~input_o ),
+	.datac(\number[3]~input_o ),
+	.datad(\number[2]~input_o ),
+	.cin(gnd),
+	.combout(\WideOr0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \WideOr0~0 .lut_mask = 16'h3182;
+defparam \WideOr0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+assign led7seg[0] = \led7seg[0]~output_o ;
+
+assign led7seg[1] = \led7seg[1]~output_o ;
+
+assign led7seg[2] = \led7seg[2]~output_o ;
+
+assign led7seg[3] = \led7seg[3]~output_o ;
+
+assign led7seg[4] = \led7seg[4]~output_o ;
+
+assign led7seg[5] = \led7seg[5]~output_o ;
+
+assign led7seg[6] = \led7seg[6]~output_o ;
+
+assign led7seg[7] = \led7seg[7]~output_o ;
+
+assign selecter = \selecter~output_o ;
+
+endmodule

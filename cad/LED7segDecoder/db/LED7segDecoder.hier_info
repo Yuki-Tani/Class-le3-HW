@@ -1,0 +1,16 @@
+|LED7segDecoder
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+led7seg[0] <= <GND>
+led7seg[1] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+led7seg[2] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+led7seg[3] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+led7seg[4] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+led7seg[5] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+led7seg[6] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+led7seg[7] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+selecter <= <GND>
+
+

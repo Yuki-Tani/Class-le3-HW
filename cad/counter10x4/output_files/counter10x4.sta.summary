@@ -1,0 +1,257 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 100C Model Setup 'counter4:dev2|overflow'
+Slack : -2.088
+TNS   : -15.243
+
+Type  : Slow 1200mV 100C Model Setup 'clock'
+Slack : -1.734
+TNS   : -21.093
+
+Type  : Slow 1200mV 100C Model Setup 'counter10:c2|overflow'
+Slack : -0.426
+TNS   : -1.254
+
+Type  : Slow 1200mV 100C Model Setup 'counter10:c0|overflow'
+Slack : -0.396
+TNS   : -1.276
+
+Type  : Slow 1200mV 100C Model Setup 'counter2p16:dev|overflow'
+Slack : -0.371
+TNS   : -1.247
+
+Type  : Slow 1200mV 100C Model Setup 'counter10:c1|overflow'
+Slack : -0.370
+TNS   : -1.175
+
+Type  : Slow 1200mV 100C Model Setup 'start_stop_RMch'
+Slack : 0.203
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'counter10:c1|overflow'
+Slack : 0.414
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'counter10:c2|overflow'
+Slack : 0.414
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'counter2p16:dev|overflow'
+Slack : 0.414
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'counter10:c0|overflow'
+Slack : 0.415
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'counter4:dev2|overflow'
+Slack : 0.415
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'clock'
+Slack : 0.419
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'start_stop_RMch'
+Slack : 0.449
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'clock'
+Slack : -3.000
+TNS   : -26.130
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'counter4:dev2|overflow'
+Slack : -1.285
+TNS   : -16.705
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'counter2p16:dev|overflow'
+Slack : -1.285
+TNS   : -7.710
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'counter10:c0|overflow'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'counter10:c1|overflow'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'counter10:c2|overflow'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'start_stop_RMch'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Slow 1200mV -40C Model Setup 'counter4:dev2|overflow'
+Slack : -1.734
+TNS   : -11.912
+
+Type  : Slow 1200mV -40C Model Setup 'clock'
+Slack : -1.349
+TNS   : -15.840
+
+Type  : Slow 1200mV -40C Model Setup 'counter10:c2|overflow'
+Slack : -0.216
+TNS   : -0.485
+
+Type  : Slow 1200mV -40C Model Setup 'counter10:c0|overflow'
+Slack : -0.187
+TNS   : -0.518
+
+Type  : Slow 1200mV -40C Model Setup 'counter2p16:dev|overflow'
+Slack : -0.171
+TNS   : -0.494
+
+Type  : Slow 1200mV -40C Model Setup 'counter10:c1|overflow'
+Slack : -0.171
+TNS   : -0.429
+
+Type  : Slow 1200mV -40C Model Setup 'start_stop_RMch'
+Slack : 0.320
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'counter10:c0|overflow'
+Slack : 0.341
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'counter10:c1|overflow'
+Slack : 0.341
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'counter2p16:dev|overflow'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'counter4:dev2|overflow'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'counter10:c2|overflow'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'clock'
+Slack : 0.356
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'start_stop_RMch'
+Slack : 0.382
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'clock'
+Slack : -3.000
+TNS   : -26.130
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'counter4:dev2|overflow'
+Slack : -1.285
+TNS   : -16.705
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'counter2p16:dev|overflow'
+Slack : -1.285
+TNS   : -7.710
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'counter10:c0|overflow'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'counter10:c1|overflow'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'counter10:c2|overflow'
+Slack : -1.285
+TNS   : -6.425
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'start_stop_RMch'
+Slack : -1.285
+TNS   : -1.285
+
+Type  : Fast 1200mV -40C Model Setup 'counter4:dev2|overflow'
+Slack : -0.431
+TNS   : -2.456
+
+Type  : Fast 1200mV -40C Model Setup 'clock'
+Slack : -0.270
+TNS   : -1.500
+
+Type  : Fast 1200mV -40C Model Setup 'counter10:c2|overflow'
+Slack : 0.326
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'counter10:c0|overflow'
+Slack : 0.341
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'counter2p16:dev|overflow'
+Slack : 0.356
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'counter10:c1|overflow'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'start_stop_RMch'
+Slack : 0.642
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'counter10:c0|overflow'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'counter10:c1|overflow'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'counter2p16:dev|overflow'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'counter4:dev2|overflow'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'counter10:c2|overflow'
+Slack : 0.179
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'clock'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'start_stop_RMch'
+Slack : 0.197
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'clock'
+Slack : -3.000
+TNS   : -21.934
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'counter4:dev2|overflow'
+Slack : -1.000
+TNS   : -13.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'counter2p16:dev|overflow'
+Slack : -1.000
+TNS   : -6.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'counter10:c0|overflow'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'counter10:c1|overflow'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'counter10:c2|overflow'
+Slack : -1.000
+TNS   : -5.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'start_stop_RMch'
+Slack : -1.000
+TNS   : -1.000
+
+------------------------------------------------------------
