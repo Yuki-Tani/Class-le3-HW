@@ -1,0 +1,46 @@
+# do counter10x4_run_msim_gate_verilog.do 
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Copying /opt/altera/13.0sp1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied /opt/altera/13.0sp1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+. {counter10x4_7_1200mv_100c_slow.vo}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module counter10x4
+# 
+# Top level modules:
+# 	counter10x4
+# 
+# vlog -vlog01compat -work work +incdir+/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim {/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim/counter10x4_test1.vt}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module counter10x4_vlg_tst
+# 
+# Top level modules:
+# 	counter10x4_vlg_tst
+# 
+# vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs="+acc"  counter10x4_vlg_tst
+# vsim +transport_int_delays +transport_path_delays -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs=\"+acc\" -t 1ps counter10x4_vlg_tst 
+# Loading work.counter10x4_vlg_tst
+# Loading work.counter10x4
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# SDF 10.1d Compiler 2012.11 Nov  2 2012
+# Loading instances from counter10x4_7_1200mv_100c_v_slow.sdo
+# Loading timing data from counter10x4_7_1200mv_100c_v_slow.sdo
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /counter10x4_vlg_tst File: /home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim/counter10x4_test1.vt
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Running testbench
+# Break key hit 
+# Simulation stop requested.

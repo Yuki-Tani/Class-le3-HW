@@ -1,0 +1,45 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim
+vcounter10x4
+I9WmFW4LGEUO7mVmRBdJP[2
+VcmV78dEMNAN<z?7aB1d=70
+Z1 d/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim
+w1492571964
+8counter10x4_7_1200mv_100c_slow.vo
+Fcounter10x4_7_1200mv_100c_slow.vo
+L0 31
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+!i10b 1
+!s100 TcI^@d5FzhN1Szdeda?LB0
+!s85 0
+!s108 1492571991.856973
+!s107 counter10x4_7_1200mv_100c_slow.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|counter10x4_7_1200mv_100c_slow.vo|
+!s101 -O0
+!s92 -vlog01compat -work work +incdir+. -O0
+vcounter10x4_vlg_tst
+!i10b 1
+!s100 nP`cc?di`cT<7Ed6W@N3i3
+I:He_f5iP=J0dj?5gdKoe23
+V_jj<Kj?oZd`<Q`aXZ=]P00
+R1
+w1492571761
+8/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim/counter10x4_test1.vt
+F/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim/counter10x4_test1.vt
+L0 28
+R2
+r1
+!s85 0
+31
+!s108 1492571991.904279
+!s107 /home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim/counter10x4_test1.vt|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim|/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim/counter10x4_test1.vt|
+!s101 -O0
+R3
+!s92 -vlog01compat -work work +incdir+/home/015/a0151390/le3/HW/cad/counter10x4/simulation/modelsim -O0

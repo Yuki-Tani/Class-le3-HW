@@ -1,5 +1,5 @@
 Analysis & Synthesis report for counter10x4
-Fri Apr 14 18:55:57 2017
+Thu Apr 20 10:31:01 2017
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -15,17 +15,19 @@ Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Ver
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Registers Removed During Synthesis
   9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Port Connectivity Checks: "LED4set:gath|counter4:counter"
- 13. Port Connectivity Checks: "LED7segDecoder:d3"
- 14. Port Connectivity Checks: "LED7segDecoder:d2"
- 15. Port Connectivity Checks: "LED7segDecoder:d1"
- 16. Port Connectivity Checks: "LED7segDecoder:d0"
- 17. Port Connectivity Checks: "counter4:dev2"
- 18. Port Connectivity Checks: "counter2p16:dev"
- 19. Elapsed Time Per Partition
- 20. Analysis & Synthesis Messages
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "LED4set:gath|counter4:counter"
+ 12. Port Connectivity Checks: "LED7segDecoder:d3"
+ 13. Port Connectivity Checks: "LED7segDecoder:d2"
+ 14. Port Connectivity Checks: "LED7segDecoder:d1"
+ 15. Port Connectivity Checks: "LED7segDecoder:d0"
+ 16. Port Connectivity Checks: "counter10:c2"
+ 17. Port Connectivity Checks: "counter10:c1"
+ 18. Port Connectivity Checks: "counter10:c0"
+ 19. Port Connectivity Checks: "counter4:dev2"
+ 20. Port Connectivity Checks: "counter2p16:dev"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -51,15 +53,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Apr 14 18:55:56 2017            ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 20 10:31:01 2017            ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
 ; Revision Name                      ; counter10x4                                      ;
 ; Top-level Entity Name              ; counter10x4                                      ;
 ; Family                             ; Cyclone IV E                                     ;
-; Total logic elements               ; 93                                               ;
-;     Total combinational functions  ; 92                                               ;
-;     Dedicated logic registers      ; 53                                               ;
-; Total registers                    ; 53                                               ;
+; Total logic elements               ; 94                                               ;
+;     Total combinational functions  ; 94                                               ;
+;     Dedicated logic registers      ; 49                                               ;
+; Total registers                    ; 49                                               ;
 ; Total pins                         ; 15                                               ;
 ; Total virtual pins                 ; 0                                                ;
 ; Total memory bits                  ; 0                                                ;
@@ -191,28 +193,28 @@ applicable agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 93          ;
+; Estimated Total logic elements              ; 94          ;
 ;                                             ;             ;
-; Total combinational functions               ; 92          ;
+; Total combinational functions               ; 94          ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 59          ;
-;     -- 3 input functions                    ; 5           ;
+;     -- 4 input functions                    ; 63          ;
+;     -- 3 input functions                    ; 3           ;
 ;     -- <=2 input functions                  ; 28          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 78          ;
+;     -- normal mode                          ; 80          ;
 ;     -- arithmetic mode                      ; 14          ;
 ;                                             ;             ;
-; Total registers                             ; 53          ;
-;     -- Dedicated logic registers            ; 53          ;
+; Total registers                             ; 49          ;
+;     -- Dedicated logic registers            ; 49          ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 15          ;
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ; Maximum fan-out node                        ; clock~input ;
-; Maximum fan-out                             ; 18          ;
-; Total fan-out                               ; 432         ;
-; Average fan-out                             ; 2.47        ;
+; Maximum fan-out                             ; 19          ;
+; Total fan-out                               ; 444         ;
+; Average fan-out                             ; 2.57        ;
 +---------------------------------------------+-------------+
 
 
@@ -221,18 +223,18 @@ applicable agreement for further details.
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                        ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+--------------+
-; |counter10x4               ; 92 (2)            ; 53 (2)       ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |counter10x4                               ; work         ;
+; |counter10x4               ; 94 (3)            ; 49 (0)       ; 0           ; 0            ; 0       ; 0         ; 15   ; 0            ; |counter10x4                               ; work         ;
 ;    |LED4set:gath|          ; 20 (18)           ; 13 (11)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|LED4set:gath                  ; work         ;
 ;       |counter4:counter|   ; 2 (2)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|LED4set:gath|counter4:counter ; work         ;
 ;    |LED7segDecoder:d0|     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|LED7segDecoder:d0             ; work         ;
 ;    |LED7segDecoder:d1|     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|LED7segDecoder:d1             ; work         ;
 ;    |LED7segDecoder:d2|     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|LED7segDecoder:d2             ; work         ;
 ;    |LED7segDecoder:d3|     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|LED7segDecoder:d3             ; work         ;
-;    |counter10:c0|          ; 5 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c0                  ; work         ;
-;    |counter10:c1|          ; 5 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c1                  ; work         ;
-;    |counter10:c2|          ; 5 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c2                  ; work         ;
-;    |counter10:c3|          ; 5 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c3                  ; work         ;
-;    |counter2p16:dev|       ; 19 (19)           ; 15 (15)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter2p16:dev               ; work         ;
+;    |counter10:c0|          ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c0                  ; work         ;
+;    |counter10:c1|          ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c1                  ; work         ;
+;    |counter10:c2|          ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c2                  ; work         ;
+;    |counter10:c3|          ; 6 (6)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter10:c3                  ; work         ;
+;    |counter2p16:dev|       ; 20 (20)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter2p16:dev               ; work         ;
 ;    |counter4:dev2|         ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |counter10x4|counter4:dev2                 ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -245,8 +247,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------+----------------------------------------+
 ; LED4set:gath|LED[0]                   ; Stuck at GND due to stuck port data_in ;
 ; counter2p16:dev|count[0]              ; Merged with counter4:dev2|count[0]     ;
-; counter2p16:dev|count[1]              ; Merged with counter4:dev2|count[1]     ;
-; Total Number of Removed Registers = 3 ;                                        ;
+; Total Number of Removed Registers = 2 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
 
@@ -255,24 +256,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 53    ;
+; Total registers                              ; 49    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 9     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
-
-
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; run                                    ; 2       ;
-; Total number of inverted registers = 1 ;         ;
-+----------------------------------------+---------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -289,6 +280,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+--------+----------+----------------------------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                                                  ;
 +----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; plus     ; Input  ; Info     ; Stuck at VCC                                                                                             ;
 ; overflow ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
 +----------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
@@ -329,6 +321,33 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "counter10:c2"                                                                                                ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                  ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; overflow ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "counter10:c1"                                                                                                ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                  ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; overflow ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "counter10:c0"                                                                                                ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                  ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; overflow ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
 +--------------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "counter4:dev2"                                                                                            ;
 +-------+--------+----------+----------------------------------------------------------------------------------------------------------+
@@ -343,6 +362,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------+--------+----------+----------------------------------------------------------------------------------------------------------+
 ; Port  ; Type   ; Severity ; Details                                                                                                  ;
 +-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; plus  ; Input  ; Info     ; Stuck at VCC                                                                                             ;
 ; count ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
 +-------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
@@ -362,7 +382,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Apr 14 18:55:54 2017
+    Info: Processing started: Thu Apr 20 10:30:59 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off counter10x4 -c counter10x4
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file /home/015/a0151390/le3/HW/cad/LED7segDecoder/LED7segDecoder.v
@@ -378,28 +398,29 @@ Info (12021): Found 1 design units, including 1 entities, in source file counter
 Info (12021): Found 1 design units, including 1 entities, in source file counter2p16.v
     Info (12023): Found entity 1: counter2p16
 Info (12127): Elaborating entity "counter10x4" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at counter10x4.v(27): truncated value with size 32 to match size of target (1)
 Info (12128): Elaborating entity "counter2p16" for hierarchy "counter2p16:dev"
-Warning (10230): Verilog HDL assignment warning at counter2p16.v(13): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at counter2p16.v(15): truncated value with size 32 to match size of target (16)
 Info (12128): Elaborating entity "counter4" for hierarchy "counter4:dev2"
 Info (12128): Elaborating entity "counter10" for hierarchy "counter10:c0"
 Info (12128): Elaborating entity "LED7segDecoder" for hierarchy "LED7segDecoder:d0"
 Warning (10034): Output port "gnd" at LED7segDecoder.v(4) has no driver
 Info (12128): Elaborating entity "LED4set" for hierarchy "LED4set:gath"
-Warning (12241): 7 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 10 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED[0]" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 108 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "start_stop"
+Info (21057): Implemented 109 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 13 output pins
-    Info (21061): Implemented 93 logic cells
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 353 megabytes
-    Info: Processing ended: Fri Apr 14 18:55:57 2017
-    Info: Elapsed time: 00:00:03
+    Info (21061): Implemented 94 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 357 megabytes
+    Info: Processing ended: Thu Apr 20 10:31:01 2017
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

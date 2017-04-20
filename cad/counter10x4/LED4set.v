@@ -1,13 +1,15 @@
 module LED4set(
-	input CKx4,
+	input CK,
 	input [7:0] LED3,LED2,LED1,LED0,
 	output reg [7:0] LED,
 	output reg [3:0] selecters);
 	
 	wire [1:0] num;
-	counter4 counter(.clock(CKx4),.count(num));
+	wire vdd;
+	assign vdd = 1;
+	counter4 counter(.clock(CK),.plus(vdd),.count(num));
 
-	always @(posedge CKx4)
+	always @(posedge CK)
 	begin
 		case (num)
 			2'b00: begin 

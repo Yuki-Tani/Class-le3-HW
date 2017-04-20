@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Fri Apr 14 18:55:56 2017
+Analysis & Synthesis Status : Successful - Thu Apr 20 10:31:01 2017
 Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
 Revision Name : counter10x4
 Top-level Entity Name : counter10x4
 Family : Cyclone IV E
-Total logic elements : 93
-    Total combinational functions : 92
-    Dedicated logic registers : 53
-Total registers : 53
+Total logic elements : 94
+    Total combinational functions : 94
+    Dedicated logic registers : 49
+Total registers : 49
 Total pins : 15
 Total virtual pins : 0
 Total memory bits : 0
