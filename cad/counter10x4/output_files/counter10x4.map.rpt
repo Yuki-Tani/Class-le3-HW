@@ -1,5 +1,5 @@
 Analysis & Synthesis report for counter10x4
-Thu Apr 20 10:31:01 2017
+Fri Apr 21 15:30:40 2017
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -53,7 +53,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 20 10:31:01 2017            ;
+; Analysis & Synthesis Status        ; Successful - Fri Apr 21 15:30:40 2017            ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
 ; Revision Name                      ; counter10x4                                      ;
 ; Top-level Entity Name              ; counter10x4                                      ;
@@ -382,7 +382,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Apr 20 10:30:59 2017
+    Info: Processing started: Fri Apr 21 15:30:38 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off counter10x4 -c counter10x4
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file /home/015/a0151390/le3/HW/cad/LED7segDecoder/LED7segDecoder.v
@@ -397,6 +397,10 @@ Info (12021): Found 1 design units, including 1 entities, in source file counter
     Info (12023): Found entity 1: counter10
 Info (12021): Found 1 design units, including 1 entities, in source file counter2p16.v
     Info (12023): Found entity 1: counter2p16
+Info (12021): Found 1 design units, including 1 entities, in source file counter8.v
+    Info (12023): Found entity 1: counter8
+Info (12021): Found 1 design units, including 1 entities, in source file LED8set.v
+    Info (12023): Found entity 1: LED8set
 Info (12127): Elaborating entity "counter10x4" for the top level hierarchy
 Info (12128): Elaborating entity "counter2p16" for hierarchy "counter2p16:dev"
 Warning (10230): Verilog HDL assignment warning at counter2p16.v(15): truncated value with size 32 to match size of target (16)
@@ -418,8 +422,8 @@ Info (21057): Implemented 109 device resources after synthesis - the final resou
     Info (21059): Implemented 13 output pins
     Info (21061): Implemented 94 logic cells
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 357 megabytes
-    Info: Processing ended: Thu Apr 20 10:31:01 2017
+    Info: Peak virtual memory: 352 megabytes
+    Info: Processing ended: Fri Apr 21 15:30:40 2017
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
