@@ -1,0 +1,66 @@
+LI 1 1
+LI 2 2
+LI 3 1
+LI 4 1
+LI 5 1
+skip
+skip
+
+
+CMP 4 5
+BLT 3
+skip
+ADD 1 2
+ADD 2 1
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+
+CMP 4 5
+BLE 3
+skip
+ADD 1 2
+ADD 2 1
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+
+
+CMP 4 5
+BNE 3
+skip
+ADD 1 2
+ADD 2 1
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+
+
+CMP 4 3
+BLE 3
+skip
+ADD 1 2
+ADD 2 1
+skip
+skip
+ST 1 8(3)
+ADD 3 4
+skip
+skip
+ST 1 8(3)
+ADD 3 4

@@ -1,0 +1,36 @@
+LI 1 1
+LI 2 15
+LI 3 1
+skip
+skip
+
+SLL 2 6
+skip
+skip
+ST 2 7(1)
+ADD 1 3
+
+SRL 2 4
+skip
+skip
+ST 2 7(1)
+ADD 1 3
+
+SLR 2 15
+skip
+skip
+ST 2 7(1)
+ADD 1 3
+
+SRA 2 2
+skip
+skip
+ST 2 7(1)
+ADD 1 3
+
+LD 4 7(3)
+skip
+skip
+ST 2 7(1)
+
+
