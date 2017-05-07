@@ -1,4 +1,14 @@
-<kadai2,3>
+<kadai2>
+Total logic elements 90 / 28,848(<1%)
+FMax 367.92 MHz
+
+<kadai3>
+
+Total logic elements 93
+FMax 368.46MHz
+
+
+
 Quartus II 32-bit Version	13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
 Revision Name	counter10x4
 Top-level Entity Name	counter10x4
@@ -18,3 +28,4 @@ Total PLLs	0 / 4 ( 0 % )
 clock 10ns 
 FMax		restricted Fmax
 368.46 MHz	250.0 MHz	clock	limit due to minimum period restriction (max I/O toggle rate)
+
