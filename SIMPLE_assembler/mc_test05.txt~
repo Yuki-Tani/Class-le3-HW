@@ -1,0 +1,23 @@
+LI 1 2
+LI 2 6
+LI 3 0
+LI 4 1
+LI 5 1
+LI 6 0
+skip
+skip
+
+CMP 2 4
+BLT 7
+skip
+ADD 3 1
+ADD 4 5
+skip
+skip
+B -8
+skip
+
+ST 3 8(5)
+skip
+skip
+

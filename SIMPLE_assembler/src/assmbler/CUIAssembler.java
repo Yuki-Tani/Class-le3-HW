@@ -30,7 +30,6 @@ public class CUIAssembler {
 			if (opCode.charAt(0) == 'H') {
 				guidance(2,"Read");
 				rURL = sysIn.readLine();
-				// System.out.println(assembler.assemble(sysIn.readLine()));
 				rFile = new File(rURL);
 				if (!rFile.exists()) {
 					notion(1, rURL);
@@ -66,6 +65,7 @@ public class CUIAssembler {
 				while(str != null){
 					if(!str.isEmpty()){
 						code = assembler.assemble(str);
+						System.out.println(code);
 						if(assembler.isError(code)){
 							notion(3); return;
 						}

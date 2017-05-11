@@ -30,8 +30,7 @@ public class AssemblerOfSIMPLE {
 			int op2_ = Integer.parseInt(op2);
 			int op3_ = Integer.parseInt(op3);
 			
-			if(op1_<0 || op2_<0 || op3_<0) return "ERROR_02_";
-			
+//			if(op1_<0 || op2_<0 || op3_<0) return "ERROR_02";
 			op1 = Integer.toBinaryString(op1_);
 			op2 = Integer.toBinaryString(op2_);
 			op3 = Integer.toBinaryString(op3_);
@@ -101,9 +100,10 @@ public class AssemblerOfSIMPLE {
 		if (fin) {
 			if (length != 3)
 				return "ERROR_03";
-			mc13_11 = String.format("%03d", Integer.parseInt(mc13_11));
-			mc10_8 = String.format("%03d", Integer.parseInt(mc10_8));
-			mc3_0 = String.format("%04d", Integer.parseInt(mc3_0));
+			mc13_11 = form(mc13_11, 3);
+			mc10_8 = form(mc10_8, 3);
+			mc3_0 = form(mc3_0, 4);
+			
 			String ans = (mc15_14 + mc13_11 + mc10_8 + mc7_4 + mc3_0);
 			return (ans.length() == 16) ? ans : "ERROR_04";
 		}
@@ -130,8 +130,8 @@ public class AssemblerOfSIMPLE {
 		if (fin) {
 			if (length != 2)
 				return "ERROR_03";
-			mc13_11 = String.format("%03d", Integer.parseInt(mc13_11));
-			mc10_8 = String.format("%03d", Integer.parseInt(mc10_8));
+			mc13_11 = form(mc13_11 , 3);
+			mc10_8 = form(mc10_8 , 3);
 			String ans = (mc15_14 + mc13_11 + mc10_8 + mc7_4 + mc3_0);
 			return (ans.length() == 16) ? ans : "ERROR_04";
 		}
@@ -165,9 +165,9 @@ public class AssemblerOfSIMPLE {
 		if (fin) {
 			if (length != 4)
 				return "ERROR_03";
-			mc13_11 = String.format("%03d", Integer.parseInt(mc13_11));
-			mc10_8 = String.format("%03d", Integer.parseInt(mc10_8));
-			mc7_0 = String.format("%08d", Integer.parseInt(mc7_0));
+			mc13_11 = form(mc13_11 , 3);
+			mc10_8 = form(mc10_8 , 3);
+			mc7_0 = form(mc7_0, 8);
 			String ans = (mc15_14 + mc13_11 + mc10_8 + mc7_0);
 			return (ans.length() == 16) ? ans : "ERROR_04";
 		}
@@ -195,8 +195,8 @@ public class AssemblerOfSIMPLE {
 		if (fin) {
 			if (length != 3)
 				return "ERROR_03";
-			mc10_8 = String.format("%03d", Integer.parseInt(mc10_8));
-			mc7_0 = String.format("%08d", Integer.parseInt(mc7_0));
+			mc10_8 = form(mc10_8 , 3);
+			mc7_0 = form(mc7_0, 8);
 			String ans = (mc15_14 + mc13_11 + mc10_8 + mc7_0);
 			return (ans.length() == 16) ? ans : "ERROR_04";
 		}
@@ -229,7 +229,7 @@ public class AssemblerOfSIMPLE {
 		if (fin) {
 			if (length != 2)
 				return "ERROR_03";
-			mc7_0 = String.format("%08d", Integer.parseInt(mc7_0));
+			mc7_0 = form(mc7_0, 8);
 			String ans = (mc15_14 + mc13_11 + mc10_8 + mc7_0);
 			return (ans.length() == 16) ? ans : "ERROR_04";
 		}
@@ -242,6 +242,16 @@ public class AssemblerOfSIMPLE {
 		}
 
 		return "ERROR_00";
+	}
+	
+	public String form(String str,int digit){
+		String formed = str;
+		if(str.length()<digit){
+			formed = String.format("%0"+digit+"d", Integer.parseInt(str));
+		}else{
+			formed = str.substring(str.length()-digit,str.length());
+		}
+		return formed;
 	}
 	
 	public boolean isError(String str){
