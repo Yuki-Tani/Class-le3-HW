@@ -64,11 +64,13 @@ public class CUIAssembler {
 				while(str != null){
 					if(!str.isEmpty()){
 						code = assembler.assemble(str);
-						System.out.println(code);
 						if(assembler.isError(code)){
 							notion(3); return;
 						}
-						mcCodes.offer(code);
+						if(!code.isEmpty()){
+							mcCodes.offer(code);
+							System.out.println(code);
+						}
 					}
 					str = filIn.readLine();
 				}

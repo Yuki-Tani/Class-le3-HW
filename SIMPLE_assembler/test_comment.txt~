@@ -1,0 +1,46 @@
+ skip
+LI 1 20
+LI 2 10
+LI 3 5
+skip
+skip
+
+////////// comment
+ADD 1 2
+skip
+skip
+ST 1 0(3)
+skip
+skip
+
+SUB 1 3 //////// able to use in last
+skip
+skip
+ST 1 1(3) // ST 1 1(3)
+
+LI 1 15
+LI 2 60
+skip
+skip
+
+AND 1 2
+skip
+skip
+ST 1 2(3)
+
+LI 1 15
+skip
+skip
+OR 1 2
+skip
+skip
+ST 1 3(3)
+
+LI 1 15
+skip
+skip
+XOR 1 2
+skip
+skip
+ST 1 4(3)
+
