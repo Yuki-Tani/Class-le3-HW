@@ -1,0 +1,297 @@
+module TestEnvironment(
+
+	input clock, clock2,
+	input [7:0] dipSW_A, dipSW_B,
+	input [3:0] rotSW_A, rotSW_B,
+	input [4:0] pushSW_A, pushSW_B, pushSW_C, pushSW_D,
+
+	output [7:0] LED7segA_D, LED7segE_H,
+	output [3:0] slctA_D, slctE_H,
+	output [7:0] LED,
+	output BZ,
+	
+	output [7:0] LED7ep0, LED7ep1, LED7ep2, LED7ep3,
+					 LED7ep4, LED7ep5, LED7ep6, LED7ep7,
+	output [7:0] slctEp
+);
+//#############################################################
+//  outputs
+
+wire [7:0] LED_A, LED_B, LED_C, LED_D,
+			  LED_E, LED_F, LED_G, LED_H;
+
+wire [7:0] LED_exA[0:7], LED_exB[0:7],
+			  LED_exC[0:7], LED_exD[0:7],
+			  LED_exE[0:7], LED_exF[0:7],
+			  LED_exG[0:7], LED_exH[0:7];
+/*
+output [7:0] LED,
+output BZ
+*/
+///////////////////////////////////////////////////
+// Usable wires
+
+/*
+input clock,clock2,
+input [7:0] dipSW_A, dipSW_B,
+input [3:0] rotSW_A, rotSW_B,
+input [4:0] pushSW_A, pushSW_B, pushSW_C, pushSW_D,
+*/
+	
+wire clock_x4,
+	  clock_x8,
+	  clock_x10,
+	  clock_x100,
+	  clock_x1000,
+	  clock_x2p16,
+	  
+	  clock2_50on40,
+	  clock2_60on40,
+	  clock2_75on40,
+	  clock2_80on40,
+	  clock2_100on40,
+	  clock2_ex;
+
+wire vdd;
+
+//////////////////////////////////////////////////
+//##################################################################
+//##################################################################
+// User Space
+
+wire mainCK;
+assign mainCK = clock2;
+
+wire [15:0] pc,inst,mem_in,WBdata,result,LDresult,rs_ra,rd_rb,nextPC;
+wire [5:0] control;
+wire [2:0] WBadd;
+wire RegWrite,branch,stall;
+
+// chattring
+wire chattering_wire;
+chattering c(.in(!pushSW_B[4]), .clock(clock), .out(chattering_wire));
+// in,halt,out
+wire [15:0] in,out;
+wire halt,reset;
+assign in = {dipSW_B,dipSW_A};
+assign reset = pushSW_A[4];
+
+MicroComputer_Block mc(.clock(mainCK), .reset(reset), .exec(chattering_wire),.in(in),
+								.halt(halt),.out(out),
+								.PC_next(pc),.instruction(inst),
+								.control(control),.Rs_Ra(rs_ra),.Rd_Rb(rd_rb),
+								.stall(stall),
+								.mem_in(mem_in),.result(result),
+								.LDresult(LDresult),.WBdata(WBdata),.WBadd(WBadd),.RegW(RegWrite),
+								.IMnextPC(nextPC),.branch(branch));
+
+								
+
+assign LED[0] = control[0];
+assign LED[1] = control[1];
+assign LED[2] = control[2];
+assign LED[3] = control[3];
+assign LED[4] = control[4];
+assign LED[5] = control[5];
+assign LED[6] = 0;
+assign LED[7] = RegWrite;
+								
+LED7segDecoder dA(.number(pc[15:12]),.led7seg(LED_A));
+LED7segDecoder dB(.number(pc[11:8]),.led7seg(LED_B));
+LED7segDecoder dC(.number(pc[7:4]),.led7seg(LED_C));
+LED7segDecoder dD(.number(pc[3:0]),.led7seg(LED_D));
+
+LED7segDecoder dE(.number(inst[15:12]),.led7seg(LED_E));
+LED7segDecoder dF(.number(inst[11:8]),.led7seg(LED_F));
+LED7segDecoder dG(.number(inst[7:4]),.led7seg(LED_G));
+LED7segDecoder dH(.number(inst[3:0]),.led7seg(LED_H));
+
+LED7segDecoder exA0(.number(rs_ra[15:12]),.led7seg(LED_exA[0]));
+LED7segDecoder exA1(.number(rs_ra[11:8]),.led7seg(LED_exA[1]));
+LED7segDecoder exA2(.number(rs_ra[7:4]),.led7seg(LED_exA[2]));
+LED7segDecoder exA3(.number(rs_ra[3:0]),.led7seg(LED_exA[3]));				  
+LED7segDecoder exA4(.number(rd_rb[15:12]),.led7seg(LED_exA[4]));
+LED7segDecoder exA5(.number(rd_rb[11:8]),.led7seg(LED_exA[5]));
+LED7segDecoder exA6(.number(rd_rb[7:4]),.led7seg(LED_exA[6]));
+LED7segDecoder exA7(.number(rd_rb[3:0]),.led7seg(LED_exA[7]));	
+
+LED7segDecoder exB0(.number(result[15:12]),.led7seg(LED_exB[0]));
+LED7segDecoder exB1(.number(result[11:8]),.led7seg(LED_exB[1]));
+LED7segDecoder exB2(.number(result[7:4]),.led7seg(LED_exB[2]));
+LED7segDecoder exB3(.number(result[3:0]),.led7seg(LED_exB[3]));				  
+LED7segDecoder exB4(.number(mem_in[15:12]),.led7seg(LED_exB[4]));
+LED7segDecoder exB5(.number(mem_in[11:8]),.led7seg(LED_exB[5]));
+LED7segDecoder exB6(.number(mem_in[7:4]),.led7seg(LED_exB[6]));
+LED7segDecoder exB7(.number(mem_in[3:0]),.led7seg(LED_exB[7]));
+
+LED7segDecoder exC0(.number(WBadd[2]),.led7seg(LED_exC[0]));
+LED7segDecoder exC1(.number(WBadd[1]),.led7seg(LED_exC[1]));
+LED7segDecoder exC2(.number(WBadd[0]),.led7seg(LED_exC[2]));
+//LED7segDecoder exC3(.number(),.led7seg(LED_exC[3]));				  
+LED7segDecoder exC4(.number(WBdata[15:12]),.led7seg(LED_exC[4]));
+LED7segDecoder exC5(.number(WBdata[11:8]),.led7seg(LED_exC[5]));
+LED7segDecoder exC6(.number(WBdata[7:4]),.led7seg(LED_exC[6]));
+LED7segDecoder exC7(.number(WBdata[3:0]),.led7seg(LED_exC[7]));	
+
+//LED7segDecoder exD0(.number(cd[3]),.led7seg(LED_exD[0]));
+//LED7segDecoder exD1(.number(cd[2]),.led7seg(LED_exD[1]));
+LED7segDecoder exD2(.number(branch),.led7seg(LED_exD[2]));
+//LED7segDecoder exD3(.number(cd[0]),.led7seg(LED_exD[3]));				  
+LED7segDecoder exD4(.number(nextPC[15:12]),.led7seg(LED_exD[4]));
+LED7segDecoder exD5(.number(nextPC[11:8]),.led7seg(LED_exD[5]));
+LED7segDecoder exD6(.number(nextPC[7:4]),.led7seg(LED_exD[6]));
+LED7segDecoder exD7(.number(nextPC[3:0]),.led7seg(LED_exD[7]));
+
+LED7segDecoder exE0(.number(in[15:12]),.led7seg(LED_exE[0]));
+LED7segDecoder exE1(.number(in[11:8]),.led7seg(LED_exE[1]));
+LED7segDecoder exE2(.number(in[7:4]),.led7seg(LED_exE[2]));
+LED7segDecoder exE3(.number(in[3:0]),.led7seg(LED_exE[3]));				  
+//LED7segDecoder exE4(.number(t[4][15:12]),.led7seg(LED_exE[4]));
+//LED7segDecoder exE5(.number(t[5][15:12]),.led7seg(LED_exE[5]));
+//LED7segDecoder exE6(.number(),.led7seg(LED_exE[6]));
+//LED7segDecoder exE7(.number(),.led7seg(LED_exE[7]));	
+
+LED7segDecoder exF0(.number(stall),.led7seg(LED_exF[0]));
+//LED7segDecoder exF1(.number(),.led7seg(LED_exF[1]));
+//LED7segDecoder exF2(.number(),.led7seg(LED_exF[2]));
+//LED7segDecoder exF3(.number(),.led7seg(LED_exF[3]));				  
+//LED7segDecoder exF4(.number(),.led7seg(LED_exF[4]));
+//LED7segDecoder exF5(.number(),.led7seg(LED_exF[5]));
+//LED7segDecoder exF6(.number(),.led7seg(LED_exF[6]));
+LED7segDecoder exF7(.number(halt),.led7seg(LED_exF[7]));	
+
+LED7segDecoder exG0(.number(out[15:12]),.led7seg(LED_exG[0]));
+LED7segDecoder exG1(.number(out[11:8]),.led7seg(LED_exG[1]));
+LED7segDecoder exG2(.number(out[7:4]),.led7seg(LED_exG[2]));
+LED7segDecoder exG3(.number(out[3:0]),.led7seg(LED_exG[3]));				  
+//LED7segDecoder exG4(.number(),.led7seg(LED_exG[4]));
+//LED7segDecoder exG5(.number(),.led7seg(LED_exG[5]));
+//LED7segDecoder exG6(.number(),.led7seg(LED_exG[6]));
+//LED7segDecoder exG7(.number(),.led7seg(LED_exG[7]));	
+
+LED7segDecoder exH0(.number(num[7]),.led7seg(LED_exH[0]));
+LED7segDecoder exH1(.number(num[6]),.led7seg(LED_exH[1]));
+LED7segDecoder exH2(.number(num[5]),.led7seg(LED_exH[2]));
+LED7segDecoder exH3(.number(num[4]),.led7seg(LED_exH[3]));				  
+LED7segDecoder exH4(.number(num[3]),.led7seg(LED_exH[4]));
+LED7segDecoder exH5(.number(num[2]),.led7seg(LED_exH[5]));
+LED7segDecoder exH6(.number(num[1]),.led7seg(LED_exH[6]));
+LED7segDecoder exH7(.number(num[0]),.led7seg(LED_exH[7]));	
+
+
+// cycle counter
+
+reg count_stop = 1'b1;
+always @(posedge chattering_wire) begin
+  count_stop = ~count_stop;
+end
+
+wire flow[0:7];
+wire [3:0] num[0:7];
+assign flow[0] = (halt==1||count_stop==1)? 1'b0 : 1'b1;
+assign flow[1] = flow[0] & (num[0]==4'd9);
+assign flow[2] = flow[1] & (num[1]==4'd9);
+assign flow[3] = flow[2] & (num[2]==4'd9);
+assign flow[4] = flow[3] & (num[3]==4'd9);
+assign flow[5] = flow[4] & (num[4]==4'd9);
+assign flow[6] = flow[5] & (num[5]==4'd9);
+assign flow[7] = flow[6] & (num[6]==4'd9);
+
+counter10 dig0(.clock(mainCK),.plus(flow[0]),.count(num[0]),.reset(~reset));
+counter10 dig1(.clock(mainCK),.plus(flow[1]),.count(num[1]),.reset(~reset));
+counter10 dig2(.clock(mainCK),.plus(flow[2]),.count(num[2]),.reset(~reset));
+counter10 dig3(.clock(mainCK),.plus(flow[3]),.count(num[3]),.reset(~reset));
+counter10 dig4(.clock(mainCK),.plus(flow[4]),.count(num[4]),.reset(~reset));
+counter10 dig5(.clock(mainCK),.plus(flow[5]),.count(num[5]),.reset(~reset));
+counter10 dig6(.clock(mainCK),.plus(flow[6]),.count(num[6]),.reset(~reset));
+counter10 dig7(.clock(mainCK),.plus(flow[7]),.count(num[7]),.reset(~reset));
+
+
+/// fast clock test
+/*wire [15:0] t[0:5];
+counter2p16 test1(.clock(clock2),.plus(vdd),.count(t[0]));
+counter2p16 test2(.clock(clock2_50on40),.plus(vdd),.count(t[1]));
+counter2p16 test3(.clock(clock2_60on40),.plus(vdd),.count(t[2]));
+counter2p16 test4(.clock(clock2_75on40),.plus(vdd),.count(t[3]));
+counter2p16 test5(.clock(clock2_80on40),.plus(vdd),.count(t[4]));
+counter2p16 test6(.clock(clock2_100on40),.plus(vdd),.count(t[5]));
+*/
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+//dust
+/*
+EX ex(.clock(clock),.PC(16'b0),
+		.WDaddress(dipSW_B[2:0]),.control({~pushSW_A[0],~pushSW_A[1],4'b1001}),
+		.ALUcontrol(dipSW_A[3:0]),//.immidiate({8'b0,dipSW_B}),
+		.Rs_Ra({rotSW_A,12'b0000_0000_0000}),.Rd_Rb({rotSW_B,12'b0000_0000_0000}),
+		.IMnextPC_(pc),.branch_(LED[7]),//.WBaddress_(),.control_(cont),
+		.result_(result),//.Rb_(),.ConditionCode_(cd)
+		);
+		
+wire [15:0] pc;
+wire [15:0] result;
+wire [3:0] cd;
+wire [3:0] cont;
+wire branch;
+*/
+
+///////////////////////////////////////////////////////////////////
+//#################################################################	  
+//#################################################################	
+//##################### DON'T TOUCH ###############################	
+//#################################################################
+// assign
+assign vdd = 1;  
+counter4 x4(.clock(clock),.plus(vdd),.overflow(clock_x4));
+counter8 x8(.clock(clock),.plus(vdd),.overflow(clock_x8));
+counter10 x10(.clock(clock),.plus(vdd),.overflow(clock_x10));
+counter10 x100(.clock(clock_x10),.plus(vdd),.overflow(clock_x100));
+counter10 x1000(.clock(clock_x100),.plus(vdd),.overflow(clock_x1000));
+counter2p16 x2p16(.clock(clock),.plus(vdd),.overflow(clock_x2p16));
+
+CKmaker fast(.inclk0(clock2),.c0(clock2_50on40),.c1(clock2_60on40),
+			.c2(clock2_75on40),.c3(clock2_80on40),.c4(clock2_100on40));
+CKmaker2 fast2(.inclk0(clock2),.c0(clock2_ex));
+
+
+LED4set LEDa_d(.CK(clock_x4),
+					.LED3(LED_A),.LED2(LED_B),.LED1(LED_C),.LED0(LED_D),
+					.LED(LED7segA_D),.selecters(slctA_D));
+LED4set LEDe_h(.CK(clock_x4),
+					.LED3(LED_E),.LED2(LED_F),.LED1(LED_G),.LED0(LED_H),
+					.LED(LED7segE_H),.selecters(slctE_H));
+					
+LED8set LEDEx0(.CK(clock),
+					.LEDa(LED_exA[0]),.LEDb(LED_exB[0]),.LEDc(LED_exC[0]),.LEDd(LED_exD[0]),
+					.LEDe(LED_exE[0]),.LEDf(LED_exF[0]),.LEDg(LED_exG[0]),.LEDh(LED_exH[0]),
+					.LED(LED7ep0),.selecters(slctEp));
+LED8set LEDEx1(.CK(clock),
+					.LEDa(LED_exA[1]),.LEDb(LED_exB[1]),.LEDc(LED_exC[1]),.LEDd(LED_exD[1]),
+					.LEDe(LED_exE[1]),.LEDf(LED_exF[1]),.LEDg(LED_exG[1]),.LEDh(LED_exH[1]),
+					.LED(LED7ep1));
+LED8set LEDEx2(.CK(clock),
+					.LEDa(LED_exA[2]),.LEDb(LED_exB[2]),.LEDc(LED_exC[2]),.LEDd(LED_exD[2]),
+					.LEDe(LED_exE[2]),.LEDf(LED_exF[2]),.LEDg(LED_exG[2]),.LEDh(LED_exH[2]),
+					.LED(LED7ep2));
+LED8set LEDEx3(.CK(clock),
+					.LEDa(LED_exA[3]),.LEDb(LED_exB[3]),.LEDc(LED_exC[3]),.LEDd(LED_exD[3]),
+					.LEDe(LED_exE[3]),.LEDf(LED_exF[3]),.LEDg(LED_exG[3]),.LEDh(LED_exH[3]),
+					.LED(LED7ep3));
+LED8set LEDEx4(.CK(clock),
+					.LEDa(LED_exA[4]),.LEDb(LED_exB[4]),.LEDc(LED_exC[4]),.LEDd(LED_exD[4]),
+					.LEDe(LED_exE[4]),.LEDf(LED_exF[4]),.LEDg(LED_exG[4]),.LEDh(LED_exH[4]),
+					.LED(LED7ep4));
+LED8set LEDEx5(.CK(clock),
+					.LEDa(LED_exA[5]),.LEDb(LED_exB[5]),.LEDc(LED_exC[5]),.LEDd(LED_exD[5]),
+					.LEDe(LED_exE[5]),.LEDf(LED_exF[5]),.LEDg(LED_exG[5]),.LEDh(LED_exH[5]),
+					.LED(LED7ep5));
+LED8set LEDEx6(.CK(clock),
+					.LEDa(LED_exA[6]),.LEDb(LED_exB[6]),.LEDc(LED_exC[6]),.LEDd(LED_exD[6]),
+					.LEDe(LED_exE[6]),.LEDf(LED_exF[6]),.LEDg(LED_exG[6]),.LEDh(LED_exH[6]),
+					.LED(LED7ep6));
+LED8set LEDEx7(.CK(clock),
+					.LEDa(LED_exA[7]),.LEDb(LED_exB[7]),.LEDc(LED_exC[7]),.LEDd(LED_exD[7]),
+					.LEDe(LED_exE[7]),.LEDf(LED_exF[7]),.LEDg(LED_exG[7]),.LEDh(LED_exH[7]),
+					.LED(LED7ep7));					
+					
+endmodule
