@@ -1,4 +1,4 @@
-package assmbler;
+package assmebler;
 
 public class AssemblerOfSIMPLE {
 
@@ -8,10 +8,30 @@ public class AssemblerOfSIMPLE {
 		buffer = new StringBuffer();
 	}
 
+	/*
+	 *  return: ""					no code(comment)
+	 *  	  : "ERROR_..."			error
+	 *  	  : "0000000000000000"	machine code
+	 */
 	public String assemble(String mnemonic) {
 
-		String[] element = mnemonic.split("[\\s,()$]+", 0);
-		int length = element.length;
+		String[] elSrc = mnemonic.split("[\\s,()$]+", 0);
+		int length = 0;
+		
+		// comment out
+		for(int i=0;i<elSrc.length;i++){
+			if(elSrc[i].isEmpty()) continue; 
+			if(elSrc[i].charAt(0) == '/') break;
+			length++;
+		}
+		
+		if(length==0) return "";
+		String[] element = new String[length];
+		for(int i=0,j=0;j<length;i++){
+			if(elSrc[i].isEmpty()) continue; 
+			element[j] = elSrc[i];
+			j++;
+		}
 
 		// mnemonic length check
 		if (length <= 0 || length >= 5) {
@@ -138,7 +158,7 @@ public class AssemblerOfSIMPLE {
 		// ///////////////////////////////////
 		// halt
 
-		if (order.equals("HLT")) {
+		if (order.equals("HLT")||order.equals("HALT")) {
 			if (length != 1)
 				return "ERROR_03";
 			return ("11" + "000" + "000" + "1111" + "0000");
@@ -183,7 +203,11 @@ public class AssemblerOfSIMPLE {
 		if (order.equals("LI")) {
 			mc13_11 = "000";
 			fin = true;
-		}/* else if (order.equals("B")) {	### change B's mc_code ###
+		}else if (order.equals("ADDI")){
+			mc13_11 = "001";
+			fin = true;
+		}
+		/* else if (order.equals("B")) {	### change B's mc_code ###
 			if(length==2){ // B can be ordered by "B d" 
 				mc10_8 = "000";
 				mc7_0 = op1;
@@ -225,6 +249,15 @@ public class AssemblerOfSIMPLE {
 			}
 			mc10_8 = "100";
 			fin = true;
+		} else if (order.equals("JAL")) {
+			mc10_8 = "101";
+			fin = true;
+		} else if (order.equals("JR")) {
+			if(length==1){ // JR can be ordered by "JR"
+				length = 2;
+			}
+			mc10_8 = "110";
+			fin = true;
 		}
 		if (fin) {
 			if (length != 2)
@@ -255,6 +288,7 @@ public class AssemblerOfSIMPLE {
 	}
 	
 	public boolean isError(String str){
+		if(str.isEmpty()) return false;
 		return str.charAt(0) == 'E';
 	}
 

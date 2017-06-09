@@ -1,4 +1,4 @@
-package assmbler;
+package assmebler;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 
 public class CUIAssembler {
@@ -65,11 +64,13 @@ public class CUIAssembler {
 				while(str != null){
 					if(!str.isEmpty()){
 						code = assembler.assemble(str);
-						System.out.println(code);
 						if(assembler.isError(code)){
 							notion(3); return;
 						}
-						mcCodes.offer(code);
+						if(!code.isEmpty()){
+							mcCodes.offer(code);
+							System.out.println(code);
+						}
 					}
 					str = filIn.readLine();
 				}
