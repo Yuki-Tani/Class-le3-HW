@@ -1,0 +1,339 @@
+module EX(
+//input
+	input clock, reset,
+	input [5:0] control,	// 5 ALUSrc , 4 Branch , 0 Bradd
+	input [3:0] ALUcontrol,
+	input [15:0] PC,
+	input [15:0] Rs_Ra,Rd_Rb,
+	input [15:0] immediate,
+	input [2:0] WBaddress,
+	input halt,
+	
+//output
+	output [15:0] IMnextPC_,
+	output branch_,
+	output reg [2:0] WBaddress_,
+	output reg [3:0] control_,
+	output reg [15:0] result_,
+	output reg [15:0] Ra_,
+	output reg halt_
+	);
+	
+	reg [3:0] ConditionCode_;// S,Z,C,V 
+	
+	parameter S = 3,
+				 Z = 2,
+				 C = 1,
+				 V = 0,
+				 ALUSrc = 5,
+				 Branch = 4;
+				 
+//unclocked moving 
+assign IMnextPC_ = (control[0]==0)? PC + immediate 	//relative immediate jump
+											 : immediate ;			//immediate jump
+assign branch_ = branch;
+
+// clock moving
+
+always @(posedge clock)
+begin
+	if(reset == 1)begin
+		WBaddress_ <= WBaddress;			//WDaddress
+		control_ <= control[3:0];
+		result_ <= result;
+		Ra_ <= Rs_Ra;
+		ConditionCode_[S] <= result[15];
+		ConditionCode_[Z] <= (result == 16'b0);
+		ConditionCode_[C] <= codeC;
+		ConditionCode_[V] <= codeV;
+		halt_ <= halt;
+	end else begin
+		WBaddress_ <= 3'b000;
+		control_ <= 4'b0000;
+		result_ <= 16'b0000_0000_0000_0000;
+		Ra_ <= 16'b0000_0000_0000_0000;
+		ConditionCode_ <= 4'b0000;
+		halt_ <= 1'b0;
+	end
+end
+
+
+
+//branch dicidion
+
+	wire branch = control[Branch] 
+						&&		branch_evaluate(WBaddress,
+											ConditionCode_[S],
+											ConditionCode_[Z],
+											ConditionCode_[V]);
+	
+	function branch_evaluate(
+		input [2:0] cond,
+		input nowS,
+		input nowZ,
+		input nowV);
+	 begin
+		case(cond)
+			3'b000: branch_evaluate = nowZ;					//BE
+			3'b001: branch_evaluate = nowS ^ nowV;			//BLT
+			3'b010: branch_evaluate = nowZ||(nowS^nowV);	//BLE
+			3'b011: branch_evaluate = !nowZ;					//BNE
+			3'b100: branch_evaluate = 1;						//B
+			3'b101: branch_evaluate = 1;
+			3'b110: branch_evaluate = 1;
+			3'b111: branch_evaluate = 0;
+		endcase
+	 end
+	endfunction
+	
+
+//ALU calculation
+
+	wire [15:0] valueA,valueB;
+	assign valueA = Rd_Rb;
+	assign valueB = (control[ALUSrc] == 0)? Rs_Ra : immediate;
+	wire [15:0] result;
+	wire codeC, codeV;
+	
+	ALU alu(.ALUctl(ALUcontrol),.A(valueA),.B(valueB),.result(result),
+				.codeC(codeC),.codeV(codeV));
+	
+endmodule	
+//////////////////////////////////////////////////////////////////////////////
+
+module ALU(
+	input [3:0] ALUctl,
+	input [15:0] A,B,
+	output [15:0] result,
+	output reg codeC,codeV
+);
+	reg [16:0] ans;
+	assign result = ans[15:0];
+	
+	 always begin
+		case(ALUctl)
+			// +
+			4'b0000 : begin ans = {1'b0,A} + {1'b0,B};
+								end
+			// -						
+			4'b0001 : begin ans = {1'b0,A} - {1'b1,B};
+								end
+			// &
+			4'b0010 : begin ans = {1'b0,A & B};
+								end
+			// |
+			4'b0011 : begin ans = {1'b0,A | B};
+								end
+			// ^
+			4'b0100 : begin ans = {1'b0, A ^ B};
+								end
+			// -(compare)
+			4'b0101 : begin ans = {1'b0,A} - {1'b1,B};
+								end
+			// through
+			4'b0110 : begin ans = {1'b0 ,B};
+								end
+			// ###
+			4'b0111 : begin ans = 17'b0;
+								end
+			// shift_left_logical
+			4'b1000 : begin ans = shift_left_logical(A,B);
+								end
+			// shift_left_rotate
+			4'b1001 : begin ans = shift_left_rotate(A,B);
+								end
+			// shift_right_logical
+			4'b1010 : begin ans = shift_right_logical(A,B);
+								end
+			// shift_right_arithmetic
+			4'b1011 : begin ans = shift_right_arithmetic(A,B);
+								end
+			// through(input)
+			4'b1100 : begin ans = {1'b0 ,B};
+								end
+			// through(output)
+			4'b1101 : begin ans = {1'b0 ,B};
+								end
+			// ##
+			4'b1110 : begin ans = 17'b0;
+								end
+			// through(halt)
+			4'b1111 : begin ans = {1'b0 ,B};
+								end
+		endcase
+		
+	 end
+	 always begin
+		case(ALUctl)
+			// +
+			4'b0000 : begin 	codeC = ans[16];
+									codeV = (A[15]&B[15]&~ans[15])
+												|(~A[15]&~B[15])&ans[15]; end
+			// -						
+			4'b0001 : begin 	codeC = ans[16];
+									codeV = (A[15]&~B[15]&~ans[15])
+												|(~A[15]&B[15]&ans[15]); end
+			// -(compare)
+			4'b0101 : begin 	codeC = ans[16];
+									codeV = (A[15]&~B[15]&~ans[15])
+												|(~A[15]&B[15]&ans[15]); end
+
+			// shift_left_logical
+			4'b1000 : begin 	codeC = ans[16];
+									codeV = 0; end
+			// shift_left_rotate
+			4'b1001 : begin 	codeC = ans[16];
+									codeV = 0; end
+			// shift_right_logical
+			4'b1010 : begin 	codeC = ans[16];
+									codeV = 0; end
+			// shift_right_arithmetic
+			4'b1011 : begin 	codeC = ans[16];
+									codeV = 0; end
+			default : begin	codeC = 1'b0;
+									codeV = 1'b0; end
+			
+		endcase
+	 end
+
+
+
+	
+//shifter
+	//left logical (16...C)
+	function [16:0] shift_left_logical(
+		input [15:0] num,
+		input [3:0] shift
+	);
+	begin
+		reg [16:0] n[0:2];
+		n[2] = (shift[3]==1)? ({num[8],num[7:0],{8{1'b0}}}) : ({1'b0,num}); 		//8bit
+		n[1] = (shift[2]==1)? {n[2][12],n[2][11:0],{4{1'b0}}} : n[2]; 	//4bit
+		n[0] = (shift[1]==1)? {n[1][14],n[1][13:0],{2{1'b0}}} : n[1]; 	//2bit
+		shift_left_logical
+			  = (shift[0]==1)? {n[0][15],n[0][14:0],1'b0} : n[0]; 	//1bit
+	end
+	endfunction
+
+	//left rotate (16...C =0)
+	function [16:0] shift_left_rotate(
+		input [15:0] num,
+		input [3:0] shift
+	);
+	begin
+		reg [15:0] n[0:2];
+		n[2] = (shift[3]==1)? {num[7:0],num[15:8]} 	 : num; 		//8bit
+		n[1] = (shift[2]==1)? {n[2][11:0],n[2][15:12]} : n[2]; 	//4bit
+		n[0] = (shift[1]==1)? {n[1][13:0],n[1][15:14]} : n[1]; 	//2bit
+		shift_left_rotate
+			  = (shift[0]==1)? {1'b0,n[0][14:0],n[0][15]} : {1'b0,n[0]}; 	//1bit
+	end
+	endfunction
+
+	//right logical (16... C)
+	function [16:0] shift_right_logical(
+		input [15:0] num,
+		input [3:0] shift
+	);
+	begin
+		reg [16:0] n[0:2];
+		n[2] = (shift[3]==1)? {num[7],{8{1'b0}},num[15:8]} : {1'b0,num}; 	//8bit
+		n[1] = (shift[2]==1)? {n[2][3],{4{1'b0}},n[2][15:4]} : n[2]; 	//4bit
+		n[0] = (shift[1]==1)? {n[1][1],{2{1'b0}},n[1][15:2]} : n[1]; 	//2bit
+		shift_right_logical
+			  = (shift[0]==1)? {n[0][0],{1{1'b0}},n[0][15:1]} : n[0]; 	//1bit
+	end
+	endfunction
+	
+	//right arithmetic (16... C)
+	function [16:0] shift_right_arithmetic(
+		input [15:0] num,
+		input [3:0] shift
+	);
+	begin
+		reg [16:0] n[0:2];
+		n[2] = (shift[3]==1)? {num[7],{8{num[15]}},num[15:8]} : {1'b0,num}; 	//8bit
+		n[1] = (shift[2]==1)? {n[2][3],{4{num[15]}},n[2][15:4]} : n[2]; 	//4bit
+		n[0] = (shift[1]==1)? {n[1][1],{2{num[15]}},n[1][15:2]} : n[1]; 	//2bit
+		shift_right_arithmetic
+			  = (shift[0]==1)? {n[0][0],{1{num[15]}},n[0][15:1]} : n[0]; 	//1bit
+	end
+	endfunction
+endmodule
+/////////////////////////////////////////////////////////////////
+module MA(
+	input clock, reset,
+	input [2:0] WBaddress,
+	input [3:0] control, //3: MemRead, 2: MemWrite
+	input [15:0] ALUresult,
+	input [15:0] Ra,
+	input halt,
+	
+	output reg [2:0] WBaddress_,
+	output reg [2:0] control_,
+	output reg [15:0] ALUresult_,
+	output reg [15:0] LDresult_,
+	output reg halt_
+	);
+	
+	wire write;
+	wire [15:0] LDresult;
+	
+	//clock moving
+	always @(posedge clock)
+	begin
+		if(reset == 1)begin
+			WBaddress_ <= WBaddress;
+			control_ <= {control[3],control[1:0]};
+			ALUresult_ <= ALUresult;
+			halt_ <= halt;
+		end else begin
+			WBaddress_ <= 3'b000;
+			control_ <= 2'b00;
+			ALUresult_ <= 16'b0000_0000_0000_0000;
+			halt_ <= halt;
+		end
+	end
+	
+	assign write = control[2] & ~control[3];
+
+	ram2 memory(.address(ALUresult),
+					.clock(clock),
+					.data(Ra),
+					.wren(write),
+					.q(LDresult));
+	always begin
+		if(reset == 1)begin
+			LDresult_ = LDresult;
+		end else begin
+			LDresult_ = 16'b0000_0000_0000_0000;
+		end
+	end
+	
+	
+	
+endmodule
+///////////////////////////////////////////////////////////////////////////
+module WB(
+	input clock,
+	input [2:0] WBaddress,
+	input [2:0] control, //2':MemRead 1: RegWrite , 0:BrAdd
+	input [15:0] ALUresult,
+	input [15:0] LDresult,
+	input halt,
+	
+	output [1:0] control_,
+	output [2:0] WBaddress_,
+	output [15:0] WBdata_,
+	output reg halt_
+	);
+
+	assign control_ = control[1:0];
+	assign WBaddress_ = WBaddress;
+	assign WBdata_ = (control[2]==1)? LDresult : ALUresult;
+	
+	always @(posedge clock) begin
+		halt_ <= halt;
+	end
+	
+endmodule
